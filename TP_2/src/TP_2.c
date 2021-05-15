@@ -1,5 +1,8 @@
 /*
+Trabajo practico Nro 2: Nomina de empleados
 
+Costanza, Lucas
+Division 1B
  */
 
 #include <stdio.h>
