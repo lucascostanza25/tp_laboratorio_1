@@ -1,8 +1,12 @@
 /*
+<<<<<<< HEAD
 Trabajo practico Nro 2: Nomina de empleados
 
 Costanza, Lucas
 Division 1B
+=======
+
+>>>>>>> c1fb966223ee34d4d73de57bfb06bbba7613b44a
  */
 
 #include <stdio.h>
