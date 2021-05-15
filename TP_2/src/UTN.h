@@ -13,40 +13,34 @@
 #include <string.h>
 
 /**
- * \brief
+ * \brief Se le pide un numero al usuario y en caso de que cumpla las condiciones devuelve el resultado.
  *
- * \pre
- * \post
- * \param pResultado
- * \param mensaje
- * \param mensajeError
- * \param minimo
- * \param maximo
- * \param reintentos
- * \return
+ * \param pResultado / Puntero al espacio de memoria donde se escribira el resultado dado.
+ * \param mensaje / Mensaje mostrado al usuario para que pueda ingresar el numero.
+ * \param mensajeError / Mensaje mostrado al usuario si dio error al ingresar el numero.
+ * \param minimo / Numero minimo aceptado.
+ * \param maximo / Numero maximo aceptado.
+ * \param reintentos / Cantidad de reintentos que tiene el usuario para ingresar el numero.
+ * \return Retorna 0 si se cumplio las condiciones y se obtuvo el numero o -1 si dio error.
  */
 int utn_getNumero(int* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos);
 
 /**
- * \brief
+ * \brief Se le pide un numero flotante al usuario y en caso de que cumpla las condiciones devuelve el resultado.
  *
- * \pre
- * \post
- * \param pResultadoFlotante
- * \param mensaje
- * \param mensajeError
- * \param minimo
- * \param maximo
- * \param reintentos
- * \return
+ * \param pResultadoFlotante / Puntero al espacio de memoria donde se escribira el resultado dado.
+ * \param mensaje / Mensaje mostrado al usuario para que pueda ingresar el numero.
+ * \param mensajeError / Mensaje mostrado al usuario si dio error al ingresar el numero.
+ * \param minimo / Numero minimo aceptado.
+ * \param maximo / Numero maximo aceptado.
+ * \param reintentos / Cantidad de reintentos que tiene el usuario para ingresar el numero.
+ * \return Retorna 0 si se cumplio las condiciones y se obtuvo el numero o -1 si dio error.
  */
 float utn_getFlotante(float* pResultadoFlotante, char* mensaje, char* mensajeError, float minimo, float maximo, int reintentos);
 
 /**
  * \brief
  *
- * \pre
- * \post
  * \param pResultado
  * \param mensaje
  * \param mensajeError
@@ -58,38 +52,32 @@ float utn_getFlotante(float* pResultadoFlotante, char* mensaje, char* mensajeErr
 int utn_getCaracter(char* pResultado, char* mensaje, char* mensajeError, char minimo, char maximo, int reintentos);
 
 /**
- * \brief
+ * \brief Se le pide una cadena de caracteres al usuario.
  *
- * \pre
- * \post
- * \param pResultado
- * \param mensaje
- * \param mensajeError
- * \param longitud
- * \param reintentos
- * \return
+ * \param pResultado / Puntero al espacio de memoria donde se escribira el resultado luego de haber sido aprobado.
+ * \param mensaje / Mensaje mostrado al usuario para que ingrese la cadena de caracteres.
+ * \param mensajeError / Mensaje de error mostrado al usuario si no se cumplen las condiciones dadas.
+ * \param longitud / Longitud maxima de la cadena de caracteres.
+ * \param reintentos / Cantidad de reintentos que tiene el usuario para poder ingresar la cadena.
+ * \return Retorna 0 si se cumplio las condiciones -1 si dio error.
  */
 int utn_getString(char* pResultado, char mensaje[], char mensajeError[], int longitud, int reintentos);
 
 /**
- * \brief
+ * \brief Verifica y valida si la cadena ingresada es de tipo String.
  *
- * \pre
- * \post
- * \param cadena
- * \param longitud
- * \return
+ * \param cadena / Direccion de memoria con la cadena a analizar.
+ * \param longitud / Longitud de la cadena previamente pasada.
+ * \return Retorna 0 si se cumplio las condiciones -1 si dio error.
  */
 int esString(char* cadena, int longitud);
 
 /**
- * \brief
+ * \brief Lee stdin hasta que se encuentra con un '\n'.
  *
- * \pre
- * \post
- * \param pCadena
- * \param longitud
- * \return
+ * \param pCadena / Puntero al espacio de memoria donde se escribira la cadena obtenida.
+ * \param longitud / Longitud disponible para el tamaño de la cadena.
+ * \return Retorna 0 si se cumplio las condiciones -1 si dio error.
  */
 int myGets(char* pCadena, int longitud);
 

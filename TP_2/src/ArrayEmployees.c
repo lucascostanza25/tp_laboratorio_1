@@ -88,14 +88,14 @@ void mostrarUnEmpleado(eEmployee unEmpleado)
 int mostrarListadoDeEmpleados(eEmployee *listaDeEmpleados, int tam)
 {
 	int i;
-	int retorno=0;
+	int retorno=-1;
 
 	for(i=0; i<tam; i++)
 	{
 		if(listaDeEmpleados[i].isEmpty==OCUPADO)
 		{
 			mostrarUnEmpleado(listaDeEmpleados[i]);
-			retorno=1;
+			retorno=0;
 		}
 	}
 
@@ -107,7 +107,7 @@ int darDeBajaEmpleado(eEmployee *listaDeEmpleados, int tam)
 	int idIngresado;
 	int i;
 	int eleccion;
-	int retorno=0;
+	int retorno=-1;
 
 	if(listaDeEmpleados->isEmpty==OCUPADO)
 	{
@@ -129,7 +129,14 @@ int darDeBajaEmpleado(eEmployee *listaDeEmpleados, int tam)
 				if(eleccion==1)
 				{
 					listaDeEmpleados[i].isEmpty=LIBRE;
-					retorno=1;
+					retorno=0;
+					break;
+				}
+				else
+				{
+					fflush(stdin);
+					printf("Se cancelo la baja del empleado!\n");
+					system("cls");
 					break;
 				}
 			}
@@ -137,7 +144,7 @@ int darDeBajaEmpleado(eEmployee *listaDeEmpleados, int tam)
 	}
 	else
 	{
-		printf("No hay empleados disponibles\n");
+		printf("No hay empleados disponibles para dar de baja\n");
 	}
 	return retorno;
 }
@@ -146,7 +153,7 @@ int modificarEmpleado(eEmployee *listaDeEmpleados, int tam)
 {
 
 	int idIngresado;
-	int retorno;
+	int retorno=-1;
 	int eleccion;
 	int i;
 
@@ -165,7 +172,7 @@ int modificarEmpleado(eEmployee *listaDeEmpleados, int tam)
 						"2.Apellido\n"
 						"3.Salario\n"
 						"4.Sector\n"
-						"0.Cancelar\n"
+						"0.Volver al menu principal\n"
 						"Seleccione una opcion: ");
 				scanf("%d", &eleccion);
 				system("cls");
@@ -189,8 +196,15 @@ int modificarEmpleado(eEmployee *listaDeEmpleados, int tam)
 							utn_getNumero(&listaDeEmpleados[i].sectorEmployee, "Ingrese el sector del empleado del 1 al 5: ", "Error, sector incorrecto\n", 1, 5, 4);
 						break;
 					}
-					retorno=1;
+					retorno=0;
 					system("cls");
+				}
+				else
+				{
+					fflush(stdin);
+					printf("Se cancelo la modificacion del empleado!\n");
+					system("cls");
+					break;
 				}
 			}
 		}
@@ -219,10 +233,10 @@ int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam)
 		printf("-- ORDENAR EMPLEDOS --\n"
 				"1.Ordenar por apellido\n"
 				"2.Ordenar por sector\n"
-				"0.Cancelar\n"
+				"0.Volver al menu principal\n"
 				"Seleccione una opcion: ");
 		scanf("%d", &eleccion);
-		if(eleccion==1 || eleccion==2)
+		if(eleccion!=0)
 		{
 			switch(eleccion)
 			{
@@ -262,14 +276,14 @@ int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam)
 					}
 				break;
 			}
-			retorno=1;
+			retorno=0;
 		}
 
 	}
 	else
 	{
 		printf("No hay empleados disponibles para ordenar!\n");
-		retorno=0;
+		retorno=1;
 	}
 	return retorno;
 }

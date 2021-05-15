@@ -48,7 +48,7 @@ int main(void) {
 
 			case 2:
 				system("cls");
-				if(modificarEmpleado(listaDeEmpleados, T)==1)
+				if(modificarEmpleado(listaDeEmpleados, T)!=-1)
 				{
 					printf("Empleado modificado con exito!\n");
 				}
@@ -61,7 +61,7 @@ int main(void) {
 
 			case 3:
 				system("cls");
-				if(darDeBajaEmpleado(listaDeEmpleados, T)==1)
+				if(darDeBajaEmpleado(listaDeEmpleados, T)!=-1)
 				{
 					printf("Empleado dado de baja con exito!\n");
 				}
@@ -74,7 +74,7 @@ int main(void) {
 
 			case 4:
 				system("cls");
-				if(ordenarEmpleados(listaDeEmpleados, T)==1)
+				if(ordenarEmpleados(listaDeEmpleados, T)!=-1)
 				{
 					mostrarListadoDeEmpleados(listaDeEmpleados, T);
 				}
@@ -87,13 +87,13 @@ int main(void) {
 
 			case 5:
 				system("cls");
-				if(mostrarListadoDeEmpleados(listaDeEmpleados, T)==1)
+				if(mostrarListadoDeEmpleados(listaDeEmpleados, T)!=-1)
 				{
-					printf("\nListado de empleados\n");
+					printf("\nListado de empleados!\n");
 				}
 				else
 				{
-					printf("No hay empleados disponibles para mostrar\n");
+					printf("No hay empleados disponibles para mostrar!\n");
 				}
 				system("pause");
 			break;
