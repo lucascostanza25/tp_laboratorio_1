@@ -76,7 +76,6 @@ int main(void) {
 				system("cls");
 				if(ordenarEmpleados(listaDeEmpleados, T)!=-1)
 				{
-					mostrarListadoDeEmpleados(listaDeEmpleados, T);
 					printf("\nSe completo el ordenamiento!\n");
 				}
 				else
