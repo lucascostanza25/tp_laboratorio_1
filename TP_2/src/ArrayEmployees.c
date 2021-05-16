@@ -213,7 +213,7 @@ int modificarEmpleado(eEmployee *listaDeEmpleados, int tam)
 	else
 	{
 		system("cls");
-		printf("No hay empleados disponibles para dar de baja!\n");
+		printf("No hay empleados disponibles para modificar!\n");
 	}
 
 	return retorno;
@@ -224,61 +224,21 @@ int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam)
 	int i;
 	int j;
 	int retorno=-1;
-	int eleccion;
 	eEmployee auxEmpleado;
-	eEmployee auxInt;
 
-	if(listaDeEmpleados->isEmpty==OCUPADO)
+	if(listaDeEmpleados->idEmployee==OCUPADO)
 	{
-		printf("-- ORDENAR EMPLEDOS --\n"
-				"1.Ordenar por apellido\n"
-				"2.Ordenar por sector\n"
-				"0.Volver al menu principal\n"
-				"Seleccione una opcion: ");
-		scanf("%d", &eleccion);
-		if(eleccion!=0)
+		for(i=0; i<tam-1; i++)
 		{
-			switch(eleccion)
+			for(j=i+1; j<tam; j++)
 			{
-				case 1:
-					system("cls");
-					printf("Empleados ordenados por apellido\n");
-					for(i=0; i<tam-1; i++)
-						{
-							for(j=i+1; j<tam; j++)
-							{
-								if(strcmp(listaDeEmpleados[i].lastNameEmployee, listaDeEmpleados[j].lastNameEmployee)>0)
-								{
-									auxEmpleado=listaDeEmpleados[i];
-									listaDeEmpleados[i]=listaDeEmpleados[j];
-									listaDeEmpleados[j]=auxEmpleado;
-									retorno=0;
-									break;
-								}
-							}
-						}
-					mostrarListadoDeEmpleados(listaDeEmpleados, tam);
-				break;
-
-				case 2:
-					system("cls");
-					printf("Empleados ordenados por sector\n");
-					for(i=0; i<tam-1; i++)
-					{
-						for(j=i+1; j<tam; j++)
-						{
-							if(listaDeEmpleados[i].sectorEmployee > listaDeEmpleados[j].sectorEmployee)
-							{
-								auxInt=listaDeEmpleados[i];
-								listaDeEmpleados[i]=listaDeEmpleados[j];
-								listaDeEmpleados[j]=auxInt;
-								retorno=0;
-								break;
-							}
-						}
-					}
-					mostrarListadoDeEmpleados(listaDeEmpleados, tam);
-				break;
+				if(strcmp(listaDeEmpleados[i].lastNameEmployee, listaDeEmpleados[j].lastNameEmployee)>0 && listaDeEmpleados[i].sectorEmployee > listaDeEmpleados[j].sectorEmployee)
+				{
+					auxEmpleado=listaDeEmpleados[i];
+					listaDeEmpleados[i]=listaDeEmpleados[j];
+					listaDeEmpleados[j]=auxEmpleado;
+					retorno=0;
+				}
 			}
 		}
 	}
@@ -286,6 +246,45 @@ int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam)
 	{
 		printf("No hay empleados disponibles para ordenar!\n");
 	}
+
 	return retorno;
 }
 
+int totalSueldos(eEmployee *listaDeEmpleados, int tam)
+{
+	int i;
+	int j;
+	int retorno=-1;
+	int contadorEmpleados=0;
+	int contadorEmpleadosMas=0;
+	float acumuladorSueldo=0;
+	float promedio;
+
+	if(listaDeEmpleados->isEmpty==OCUPADO)
+	{
+		for(i=0; i<tam; i++)
+		{
+			if(listaDeEmpleados[i].isEmpty==OCUPADO)
+			{
+				acumuladorSueldo+=listaDeEmpleados[i].salaryEmployee;
+				contadorEmpleados++;
+			}
+		}
+		promedio=(float)acumuladorSueldo/contadorEmpleados;
+
+		for(j=0; j<tam; j++)
+		{
+			if(listaDeEmpleados[j].isEmpty==OCUPADO && listaDeEmpleados[j].salaryEmployee>promedio)
+			{
+				contadorEmpleadosMas++;
+			}
+		}
+		retorno=0;
+		printf("La suma de los sueldos es: $%.2f\n", acumuladorSueldo);
+		printf("El promedio de los sueldos es: $%.2f\n", promedio);
+		printf("La cantidad de empleados que superan el promedio de sueldo es: %d\n", contadorEmpleadosMas);
+	}
+
+
+	return retorno;
+}

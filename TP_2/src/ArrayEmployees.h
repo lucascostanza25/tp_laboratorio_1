@@ -122,4 +122,15 @@ int buscarEmpleadosLibres(eEmployee *listaDeEmpleados, int tam);
  */
 int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam);
 
+/**
+ * \brief Le muestra al usuario la suma de sueldos, el promedio y la cantidad de personas que superan el promedio de sueldos
+ *
+ * \pre
+ * \post
+ * \param se le pasa la lista de los empleados
+ * \param se le pasa el tamaño del array
+ * \return retorna 0 en caso de que se pudo mostrar la informacion o -1 si dio error.
+ */
+int totalSueldos(eEmployee *listaDeEmpleados, int tam);
+
 #endif /* ARRAYEMPLOYEES_H_ */

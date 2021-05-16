@@ -16,6 +16,7 @@ int main(void) {
 	inicializarEmpleados(listaDeEmpleados, T);
 	int idEmpleado=0;
 	int menu;
+	int menuCuatro;
 	int res;
 
 	do
@@ -25,8 +26,7 @@ int main(void) {
 				"\n1.Dar de alta empleados\n"
 				"2.Modificar empleados\n"
 				"3.Dar de baja empleados\n"
-				"4.Ordenar empleados\n"
-				"5.Listado de empleados\n"
+				"4.Informar\n"
 				"\nIngrese  una opcion: ");
 		scanf("%d", &menu);
 
@@ -74,28 +74,53 @@ int main(void) {
 
 			case 4:
 				system("cls");
-				if(ordenarEmpleados(listaDeEmpleados, T)!=-1)
+				printf("-- INFORMAR --\n"
+						"1.Listado de empleados ordenados\n"
+						"2.Informacion de los sueldos de los empleados\n"
+						"3.Listado de empleados\n"
+						"Seleccione una opcion: ");
+				scanf("%d", &menuCuatro);
+				switch(menuCuatro)
 				{
-					printf("\nSe completo el ordenamiento!\n");
-				}
-				else
-				{
-					printf("Se cancelo el ordenamiento de los empleados!\n");
-				}
-				system("pause");
-			break;
+					case 1:
+						system("cls");
+						if(ordenarEmpleados(listaDeEmpleados, T)!=-1)
+						{
+							printf("\nSe completo el ordenamiento!\n");
+						}
+						else
+						{
+							printf("Se cancelo el ordenamiento de los empleados!\n");
+						}
+						system("pause");
+					break;
 
-			case 5:
-				system("cls");
-				if(mostrarListadoDeEmpleados(listaDeEmpleados, T)!=-1)
-				{
-					printf("\nListado de empleados!\n");
+					case 2:
+						system("cls");
+						if(totalSueldos(listaDeEmpleados, T)!=-1)
+						{
+							printf("\nTotal, promedio y cuantos empleados superan el salario promedio!\n");
+						}
+						else
+						{
+							printf("No hay informacion de sueldos para mostrar!\n");
+						}
+						system("pause");
+					break;
+
+					case 3:
+						system("cls");
+						if(mostrarListadoDeEmpleados(listaDeEmpleados, T)!=-1)
+						{
+							printf("\nListado de empleados!\n");
+						}
+						else
+						{
+							printf("No hay empleados disponibles para mostrar!\n");
+						}
+						system("pause");
+					break;
 				}
-				else
-				{
-					printf("No hay empleados disponibles para mostrar!\n");
-				}
-				system("pause");
 			break;
 		}
 		system("cls");
