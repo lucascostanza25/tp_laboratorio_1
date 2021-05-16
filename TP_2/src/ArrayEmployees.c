@@ -77,7 +77,7 @@ int cargarEmpleados(eEmployee *listaDeEmpleados, int tam, int *idAutomatico)
 
 void mostrarUnEmpleado(eEmployee unEmpleado)
 {
-	printf("%d %s %s %f %d\n",
+	printf("ID: %d ~ NOMBRE: %s ~ APELLIDO: %s ~ SALARIO: $%.2f ~ SECTOR: %d\n",
 			unEmpleado.idEmployee,
 			unEmpleado.nameEmployee,
 			unEmpleado.lastNameEmployee,
@@ -252,10 +252,12 @@ int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam)
 									auxEmpleado=listaDeEmpleados[i];
 									listaDeEmpleados[i]=listaDeEmpleados[j];
 									listaDeEmpleados[j]=auxEmpleado;
+									retorno=0;
 									break;
 								}
 							}
 						}
+					mostrarListadoDeEmpleados(listaDeEmpleados, tam);
 				break;
 
 				case 2:
@@ -270,20 +272,19 @@ int ordenarEmpleados(eEmployee *listaDeEmpleados, int tam)
 								auxInt=listaDeEmpleados[i];
 								listaDeEmpleados[i]=listaDeEmpleados[j];
 								listaDeEmpleados[j]=auxInt;
+								retorno=0;
 								break;
 							}
 						}
 					}
+					mostrarListadoDeEmpleados(listaDeEmpleados, tam);
 				break;
 			}
-			retorno=0;
 		}
-
 	}
 	else
 	{
 		printf("No hay empleados disponibles para ordenar!\n");
-		retorno=1;
 	}
 	return retorno;
 }
