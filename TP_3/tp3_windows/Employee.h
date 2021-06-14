@@ -13,6 +13,7 @@ typedef struct
 Employee* employee_new();
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr);
 void employee_delete();
+int employee_add(LinkedList* pArrayListEmployee);
 
 int employee_setId(Employee* this,int id);
 int employee_getId(Employee* this,int* id);
@@ -29,6 +30,8 @@ int employee_getSueldo(Employee* this,int* sueldo);
 int employee_buscarId(LinkedList* listaEmpleados, int idBuscado);
 
 int employee_imprimirEmpleado(Employee* this);
+
+int employee_idAutomatico(LinkedList* pArrayListEmployee, int* idAutomatico);
 
 int employee_sortId(void* empleadoUno, void* empleadoDos);
 int employee_sortNombre(void* empleadoUno, void* empleadoDos);

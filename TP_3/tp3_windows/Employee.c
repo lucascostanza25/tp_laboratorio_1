@@ -260,11 +260,31 @@ int employee_imprimirEmpleado(Employee* this)
 
 	if(this!=NULL)
 	{
-
 		printf("-> ID: %d | Nombre: %s | Horas trabajadas: %d | Sueldo: %d", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
 		retorno=0;
 	}
 
+
+	return retorno;
+}
+
+int employee_idAutomatico(LinkedList* pArrayListEmployee, int* idAutomatico)
+{
+	int retorno=-1;
+	int tamArray;
+	Employee* auxiliarEmpleadoId;
+
+	tamArray=ll_len(pArrayListEmployee);
+
+	if(pArrayListEmployee!=NULL)
+	{
+		if(tamArray!=0)
+		{
+			auxiliarEmpleadoId=ll_get(pArrayListEmployee, tamArray-1);
+			*idAutomatico=auxiliarEmpleadoId->id+1;
+			retorno=0;
+		}
+	}
 
 	return retorno;
 }

@@ -9,6 +9,8 @@ int main()
 {
 	setbuf(stdout, NULL);
     int option = 0;
+    int flagFileTexto=0;
+    int flagFileBin=0;
     LinkedList* listaEmpleados = ll_newLinkedList();
 
     do{
@@ -31,6 +33,7 @@ int main()
                 if(!controller_loadFromText("../data.csv", listaEmpleados))
                 {
                 	printf("Archivo cargado con exito!\n");
+                	flagFileTexto=1;
                 }
                 else
                 {
@@ -40,44 +43,56 @@ int main()
             break;
 
             case 2:
-            	if(!controller_loadFromBinary("data.bin", listaEmpleados))
+            	if(!controller_loadFromBinary("../data.bin", listaEmpleados))
             	{
             		printf("Archivo cargado con exito!\n");
+            		flagFileBin=1;
             	}
             	else
 				{
 					printf("No se pudo leer el archivo!\n");
 				}
+            	system("pause");
             break;
 
             case 3:
-				if(controller_addEmployee(listaEmpleados)!=-1)
-				{
-					printf("Empleado cargado con exito!\n");
-				}
+            	if(flagFileTexto==1 || flagFileBin==1)
+            	{
+					if(controller_addEmployee(listaEmpleados)!=-1)
+					{
+						printf("Empleado dado de alta exitosamente!\n");
+					}
+            	}
+            	else
+            	{
+            		printf("Primero cargue el archivo .cvs o .bin!\n");
+            	}
             	system("pause");
             break;
 
             case 4:
-            	if(controller_editEmployee(listaEmpleados)!=-1)
+            	if(flagFileTexto==1 || flagFileBin==1)
             	{
-            		printf("Empleado modificado con exito!\n");
+            		controller_editEmployee(listaEmpleados);
             	}
             	else
             	{
-            		printf("Se cancelo la modificacion del empleado!\n");
+            		printf("Primero cargue el archivo .cvs o .bin!\n");
             	}
             	system("pause");
             break;
 
             case 5:
-            	if(controller_removeEmployee(listaEmpleados)!=-1)
+            	if(flagFileTexto==1 || flagFileBin==1)
             	{
-            		printf("Empleado dado de baja exitosamente!\n");
+            		if(controller_removeEmployee(listaEmpleados)!=-1)
+            		{
+            			printf("Empleado dado de baja exitosamente!\n");
+            		}
             	}
             	else
             	{
-            		printf("Se cancelo la baja del empleado!\n");
+            		printf("Primero cargue el archivo .cvs o .bin!\n");
             	}
             	system("pause");
             break;
@@ -91,19 +106,35 @@ int main()
             break;
 
             case 7:
-            	controller_sortEmployee(listaEmpleados);
+            	if(flagFileTexto==1 || flagFileBin==1)
+            	{
+            		controller_sortEmployee(listaEmpleados);
+            	}
+            	else
+            	{
+            		printf("Primero cargue el archivo .cvs o .bin!\n");
+            	}
+            	system("pause");
             break;
 
             case 8:
             	if(controller_saveAsText("../data.csv", listaEmpleados)!=-1)
             	{
-            		printf("Se guardo correctamente al empleado!\n");
+            		printf("Cambios guardados exitosamente!\n");
+            	}
+            	system("pause");
+            break;
+
+            case 9:
+            	if(controller_saveAsBinary("../data.bin", listaEmpleados)!=-1)
+            	{
+            		printf("Cambios guardados exitosamente!\n");
             	}
             	system("pause");
             break;
 
             case 10:
-            	utn_getNumero(&option, "Desea salir del programa?\n1.Si\n2.No\n\nSeleccione una opcion: ", "Error, numero incorrecto", 1, 2, 0);
+            	utn_getNumero(&option, "Desea salir del programa?\nATENCION! Todos los progresos no guardados se perderan!\n\n1.Si\n2.No\n\nSeleccione una opcion: ", "Error, numero incorrecto", 1, 2, 0);
             	if(option==1)
             	{
             		option=10;

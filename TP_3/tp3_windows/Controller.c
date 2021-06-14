@@ -25,8 +25,8 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 		{
 			parser_EmployeeFromText(pArchivo, pArrayListEmployee);
 			retorno=0;
-			fclose(pArchivo);
 		}
+		fclose(pArchivo);
 	}
 
     return retorno;
@@ -49,9 +49,9 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 		if(pArchivo!=NULL)
 		{
 			parser_EmployeeFromBinary(pArchivo, pArrayListEmployee);
-			fclose(pArchivo);
 			retorno=0;
 		}
+		fclose(pArchivo);
 	}
 
 	return retorno;
@@ -67,15 +67,16 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
 	int retorno=-1;
-	int auxIdE, auxSueldoE, auxHsE;
+	int auxIdE;
+	int auxSueldoE;
+	int auxHsE;
 	char nombreEmpleado[50];
 	Employee* nuevoEmpleado;
-
 
 	if(pArrayListEmployee!=NULL)
 	{
 		nuevoEmpleado=employee_new();
-		utn_getNumero(&auxIdE, "Ingrese el ID del empleado: ", "Error", 1, 10000, 4);
+		employee_idAutomatico(pArrayListEmployee, &auxIdE);
 		utn_getString(nombreEmpleado, "Ingrese el nombre del empleado: ", "Error, se excedio la longitud!\n", 50, 2);
 		utn_getNumero(&auxSueldoE, "Ingrese el sueldo del empleado (de $1 a $10000): ", "Error, sueldo fuera de rango!\n", 1, 10000, 4);
 		utn_getNumero(&auxHsE, "Ingrese las horas trabajadas del empleado: ", "Error, horas fuera de rango!\n", 0, 10000, 4);
@@ -87,11 +88,12 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
 		ll_add(pArrayListEmployee, nuevoEmpleado);
 
+
 		retorno=0;
 	}
 
 
-    return retorno;
+	return retorno;
 }
 
 /** \brief Modificar datos de empleado
@@ -158,7 +160,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 		}
 
 	}
-    return retorno;
+	return retorno;
 }
 
 /** \brief Baja de empleado
@@ -197,7 +199,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 		}
 	}
 
-    return retorno;
+	return retorno;
 }
 
 /** \brief Listar empleados
@@ -352,7 +354,9 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 		{
 			for(i=0; i<ll_len(pArrayListEmployee); i++)
 			{
+				empleadoBinario=(Employee*)ll_get(pArrayListEmployee, i);
 				fwrite(empleadoBinario, sizeof(Employee), 1, pArchivo);
+				retorno=0;
 			}
 		}
 	}
